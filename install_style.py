@@ -24,9 +24,15 @@ import matplotlib as mpl
 
 def main():
     fname = "robertsons_rules.mplstyle"
-    dest = os.path.join(mpl.get_configdir(), fname)
+
+    config_dir = mpl.get_configdir()
+    style_dir = os.path.join(config_dir, "stylelib")
+    if not "stylelib" in os.listdir(config_dir):
+        os.mkdir(style_dir)
+
+    dest = os.path.join(style_dir, fname)
     shutil.copyfile(fname, dest)
-    print(f"Copied {fname} to {mpl.get_configdir()}")
+    print(f"Copied {fname} to {style_dir}")
 
 
 if __name__=="__main__":
